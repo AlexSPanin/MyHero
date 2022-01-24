@@ -13,6 +13,8 @@
 		E2967DE7279DA166003BBFA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2967DE5279DA166003BBFA0 /* Main.storyboard */; };
 		E2967DE9279DA167003BBFA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2967DE8279DA167003BBFA0 /* Assets.xcassets */; };
 		E2967DEC279DA167003BBFA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2967DEA279DA167003BBFA0 /* LaunchScreen.storyboard */; };
+		E2A6523D279ECEA200DDB207 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A6523C279ECEA200DDB207 /* NetworkManager.swift */; };
+		E2A6523F279ECF4800DDB207 /* SuperHeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A6523E279ECF4800DDB207 /* SuperHeros.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		E2967DE8279DA167003BBFA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2967DEB279DA167003BBFA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2967DED279DA167003BBFA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2A6523C279ECEA200DDB207 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E2A6523E279ECF4800DDB207 /* SuperHeros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeros.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 		E2A65237279ECC6F00DDB207 /* Servises */ = {
 			isa = PBXGroup;
 			children = (
+				E2A6523C279ECEA200DDB207 /* NetworkManager.swift */,
 			);
 			path = Servises;
 			sourceTree = "<group>";
@@ -94,6 +99,7 @@
 		E2A65238279ECC7800DDB207 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E2A6523E279ECF4800DDB207 /* SuperHeros.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -194,7 +200,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2A6523D279ECEA200DDB207 /* NetworkManager.swift in Sources */,
 				E2967DE4279DA166003BBFA0 /* ViewController.swift in Sources */,
+				E2A6523F279ECF4800DDB207 /* SuperHeros.swift in Sources */,
 				E2967DE0279DA166003BBFA0 /* AppDelegate.swift in Sources */,
 				E2967DE2279DA166003BBFA0 /* SceneDelegate.swift in Sources */,
 			);
