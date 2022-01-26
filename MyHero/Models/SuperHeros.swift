@@ -22,51 +22,34 @@ struct Hero: Codable {
 
 // MARK: - Powerstats
 struct Powerstats: Codable {
-    let intelligence: Int?
-    let strength: Int?
-    let speed: Int?
-    let durability: Int?
-    let power: Int?
-    let combat: Int?
+    let intelligence, strength, speed, durability, power, combat: Int?
 }
 
 // MARK: - Appearance
 struct Appearance: Codable {
-    let gender: String?
-    let race: String?
-    let height: [String]?
-    let weight: [String]?
-    let eyeColor: String?
-    let hairColor: String?
+    let gender, race: String?
+    let height, weight: [String]?
+    let eyeColor, hairColor: String?
 }
 
 // MARK: - Biography
 struct Biography: Codable {
-    let fullName: String?
-    let alterEgos: String?
+    let fullName, alterEgos: String?
     let aliases: [String]?
-    let placeOfBirth: String?
-    let firstAppearance: String?
-    let publisher: String?
-    let alignment: String?
+    let placeOfBirth, firstAppearance, publisher, alignment: String?
 }
 
 // MARK: - Work
 struct Work: Codable {
-    let occupation: String?
-    let base: String?
+    let occupation, base: String?
 }
 
 //MARK: - Connections
 struct Connections: Codable {
-    let groupAffiliation: String?
-    let relatives: String?
+    let groupAffiliation, relative: String?
 }
 
 // MARK:  -  Images
 struct Images: Codable {
-    let xs: String?
-    let sm: String?
-    let md: String?
-    let lg: String?
+    let xs, sm, md, lg: String?
 }

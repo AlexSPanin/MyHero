@@ -8,6 +8,8 @@
 import UIKit
 
 class SuperHerosCollectionViewController: UICollectionViewController {
+    
+var heros: [Hero] = []
 
     private let aspectRatioPerItem: CGFloat = 4 / 3
     private let itemsPerRows: CGFloat = 2
@@ -25,11 +27,11 @@ class SuperHerosCollectionViewController: UICollectionViewController {
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .horizontal
-        
-        collectionView.showsVerticalScrollIndicator = false  // скрыть вертикальную полоску прокрутки
         */
         
-        
+        collectionView.showsVerticalScrollIndicator = false  // скрыть вертикальную полоску прокрутки
+        fetchHeros(Links.superHerosApi.rawValue)
+
     }
     
     
@@ -46,60 +48,38 @@ class SuperHerosCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return heros.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "herosCell", for: indexPath) as!  SuperHerosCollectionViewCell
     
-        // Configure the cell
+        let hero = heros[indexPath.row]
+        cell.configure(hero)
     
         return cell
     }
+}
+// MARK: - Fetch Data
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+extension SuperHerosCollectionViewController {
+    func fetchHeros(_ url: String) {
+        NetworkingManager.shared.fetchData(url: url) { result in
+            switch result {
+            case .success(let data):
+                self.heros = data
+  //              print(self.heros)
+                self.collectionView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }
 
+
 extension SuperHerosCollectionViewController: UICollectionViewDelegateFlowLayout {
-    
     
     // MARK: - установка явного размеров ячеек в секции
     // ЛУЧШЕ использовать размеры привязанные к ширине экрана
@@ -126,7 +106,4 @@ extension SuperHerosCollectionViewController: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsert.left
     }
-    
-    
-
 }

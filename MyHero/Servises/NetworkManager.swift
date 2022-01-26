@@ -23,9 +23,9 @@ class NetworkingManager {
     static var shared = NetworkingManager()
     private init() {}
     
-    func fetchImage(url: String?, complition: @escaping(Result<Data, ErrorNetwork>) -> Void) {
+    func fetchImage(url: String, complition: @escaping(Result<Data, ErrorNetwork>) -> Void) {
         
-        guard let url = URL(string: url ?? "") else {
+        guard let url = URL(string: url) else {
             complition(.failure(.errorURL))
             return
         }
@@ -40,12 +40,14 @@ class NetworkingManager {
         }
     }
     
-    func fetchData(url: String?, complition: @escaping(Result<[Hero], ErrorNetwork>) -> Void) {
+    func fetchData(url: String, complition: @escaping(Result<[Hero], ErrorNetwork>) -> Void) {
       
-        guard let url = URL(string: url ?? "") else {
+        guard let url = URL(string: url) else {
             complition(.failure(.errorURL))
             return
         }
+        
+        print(url)
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 complition(.failure(.errorData))
