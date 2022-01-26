@@ -99,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="-1321" y="-8"/>
         </scene>
-        <!--View Controller-->
+        <!--Image Hero View Controller-->
         <scene sceneID="KRw-ZH-4Rw">
             <objects>
-                <viewController id="LPt-eZ-jpF" sceneMemberID="viewController">
+                <viewController id="LPt-eZ-jpF" customClass="ImageHeroViewController" customModule="MyHero" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="enw-eQ-sua">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,6 +121,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zG2-37-Q8C"/>
+                    <connections>
+                        <outlet property="imageHeroView" destination="2mu-xg-VzY" id="Y9W-Fr-BXG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Rf-dG-M1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
