@@ -9,4 +9,6 @@ import UIKit
 
 class SuperHerosCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet var heroHameLabel: UILabel!
+    @IBOutlet var heroImageView: UIImageView!
 }

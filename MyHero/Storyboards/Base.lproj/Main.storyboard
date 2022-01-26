@@ -17,19 +17,72 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4hE-IL-g9V">
-                            <size key="itemSize" width="128" height="128"/>
+                            <size key="itemSize" width="165" height="208"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="herosCell" id="2d1-7f-rUy" customClass="SuperHerosCollectionViewCell" customModule="MyHero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <rect key="frame" x="0.0" y="0.0" width="165" height="208"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="B3L-29-Eee">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="165" height="208"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hai-GV-7C3">
+                                            <rect key="frame" x="18.5" y="5" width="128" height="171"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="hai-GV-7C3" secondAttribute="height" multiplier="3:4" id="rkQ-je-sFi"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nU-bN-OBy">
+                                            <rect key="frame" x="118" y="0.0" width="47" height="47"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="1nU-bN-OBy" secondAttribute="height" multiplier="1:1" id="vQ9-pJ-yDe"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system">
+                                                <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                            </buttonConfiguration>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heros Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXB-gf-5kJ">
+                                            <rect key="frame" x="5" y="181" width="155" height="22"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kes-Ph-N6Q">
+                                            <rect key="frame" x="118" y="0.0" width="47" height="47"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Kes-Ph-N6Q" secondAttribute="height" multiplier="1:1" id="k3b-dk-D1S"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system">
+                                                <color key="baseForegroundColor" systemColor="systemPinkColor"/>
+                                            </buttonConfiguration>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hXB-gf-5kJ" firstAttribute="leading" secondItem="B3L-29-Eee" secondAttribute="leading" constant="5" id="1iY-OO-eZ2"/>
+                                        <constraint firstAttribute="trailing" secondItem="1nU-bN-OBy" secondAttribute="trailing" id="7jF-UZ-8ZY"/>
+                                        <constraint firstItem="hai-GV-7C3" firstAttribute="centerX" secondItem="B3L-29-Eee" secondAttribute="centerX" id="G5A-Mt-q84"/>
+                                        <constraint firstItem="hXB-gf-5kJ" firstAttribute="top" secondItem="hai-GV-7C3" secondAttribute="bottom" constant="5" id="I48-bf-nyt"/>
+                                        <constraint firstItem="1nU-bN-OBy" firstAttribute="width" secondItem="B3L-29-Eee" secondAttribute="height" multiplier="45:200" id="K6A-Xe-vxa"/>
+                                        <constraint firstAttribute="bottom" secondItem="hXB-gf-5kJ" secondAttribute="bottom" constant="5" id="TI7-Ip-e3u"/>
+                                        <constraint firstAttribute="trailing" secondItem="hXB-gf-5kJ" secondAttribute="trailing" constant="5" id="Tco-Md-H5I"/>
+                                        <constraint firstItem="Kes-Ph-N6Q" firstAttribute="width" secondItem="B3L-29-Eee" secondAttribute="height" multiplier="45:200" id="Tt3-o2-tKq"/>
+                                        <constraint firstAttribute="trailing" secondItem="Kes-Ph-N6Q" secondAttribute="trailing" id="VPF-W6-fna"/>
+                                        <constraint firstItem="Kes-Ph-N6Q" firstAttribute="top" secondItem="B3L-29-Eee" secondAttribute="top" id="WL9-9h-Fyb"/>
+                                        <constraint firstItem="1nU-bN-OBy" firstAttribute="top" secondItem="B3L-29-Eee" secondAttribute="top" id="gRB-wJ-fAV"/>
+                                        <constraint firstItem="hai-GV-7C3" firstAttribute="top" secondItem="B3L-29-Eee" secondAttribute="top" constant="5" id="ndG-mR-1TH"/>
+                                    </constraints>
                                 </collectionViewCellContentView>
+                                <size key="customSize" width="165" height="208"/>
+                                <connections>
+                                    <outlet property="heroHameLabel" destination="hXB-gf-5kJ" id="FpK-er-Ktf"/>
+                                    <outlet property="heroImageView" destination="hai-GV-7C3" id="bDg-tH-xoA"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -41,7 +94,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKb-zm-bDE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1055" y="-6"/>
+            <point key="canvasLocation" x="-1055.2" y="-6.746626686656672"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oBg-Me-IyS">
@@ -63,8 +116,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
