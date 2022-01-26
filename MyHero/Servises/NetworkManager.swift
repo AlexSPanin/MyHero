@@ -46,8 +46,6 @@ class NetworkingManager {
             complition(.failure(.errorURL))
             return
         }
-        
-        print(url)
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 complition(.failure(.errorData))

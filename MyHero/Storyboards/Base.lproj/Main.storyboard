@@ -92,7 +92,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Super Heros" id="eBj-Jq-933"/>
                     <connections>
-                        <segue destination="LPt-eZ-jpF" kind="show" identifier="showImage" id="SzD-sU-nM1"/>
+                        <segue destination="LPt-eZ-jpF" kind="presentation" identifier="showImage" id="6qW-Xq-gGR"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKb-zm-bDE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -104,30 +104,40 @@
             <objects>
                 <viewController id="LPt-eZ-jpF" customClass="ImageHeroViewController" customModule="MyHero" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="enw-eQ-sua">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2mu-xg-VzY">
-                                <rect key="frame" x="5" y="49" width="365" height="613"/>
+                                <rect key="frame" x="5" y="10" width="365" height="486.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2mu-xg-VzY" secondAttribute="height" multiplier="3:4" id="32R-X3-wG0"/>
+                                </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wk7-1q-ldX">
+                                <rect key="frame" x="144.5" y="586" width="86" height="31"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" title=" Share"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Pif-SL-x4I"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2mu-xg-VzY" firstAttribute="leading" secondItem="Pif-SL-x4I" secondAttribute="leading" constant="5" id="4Pu-CY-1m1"/>
-                            <constraint firstItem="Pif-SL-x4I" firstAttribute="bottom" secondItem="2mu-xg-VzY" secondAttribute="bottom" constant="5" id="IGr-VD-ndt"/>
-                            <constraint firstItem="2mu-xg-VzY" firstAttribute="top" secondItem="Pif-SL-x4I" secondAttribute="top" constant="5" id="URo-dE-dRc"/>
+                            <constraint firstItem="Pif-SL-x4I" firstAttribute="bottom" secondItem="Wk7-1q-ldX" secondAttribute="bottom" constant="30" id="8AN-35-z36"/>
+                            <constraint firstItem="2mu-xg-VzY" firstAttribute="top" secondItem="Pif-SL-x4I" secondAttribute="top" constant="10" id="URo-dE-dRc"/>
+                            <constraint firstItem="Wk7-1q-ldX" firstAttribute="centerX" secondItem="enw-eQ-sua" secondAttribute="centerX" id="W29-gw-fEl"/>
                             <constraint firstItem="Pif-SL-x4I" firstAttribute="trailing" secondItem="2mu-xg-VzY" secondAttribute="trailing" constant="5" id="w3r-cv-Htb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zG2-37-Q8C"/>
                     <connections>
-                        <outlet property="imageHeroView" destination="2mu-xg-VzY" id="Y9W-Fr-BXG"/>
+                        <outlet property="heroImageView" destination="2mu-xg-VzY" id="Y9W-Fr-BXG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Rf-dG-M1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-598" y="-9"/>
+            <point key="canvasLocation" x="-599.20000000000005" y="-9.4452773613193415"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oBg-Me-IyS">
@@ -150,6 +160,7 @@
     </scenes>
     <resources>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

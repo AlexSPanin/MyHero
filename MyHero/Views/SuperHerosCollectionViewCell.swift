@@ -56,7 +56,7 @@ class SuperHerosCollectionViewCell: UICollectionViewCell {
 
     // MARK: - получение картинки из кэша
     private func getImage(from url: URL, completion: @escaping(Result<UIImage, Error>) -> Void) {
-        if let cacheImage = ImageCache.shared.object(forKey: url.lastPathComponent as NSString) {
+        if let cacheImage = ImageCache.shared.object(forKey: ("sm" + url.lastPathComponent) as NSString) {
             completion(.success(cacheImage))
             return
     }
@@ -64,7 +64,7 @@ class SuperHerosCollectionViewCell: UICollectionViewCell {
             switch result {
             case .success(let data):
                 guard let image = UIImage(data: data) else { return }
-                ImageCache.shared.setObject(image, forKey: url.lastPathComponent as NSString)
+                ImageCache.shared.setObject(image, forKey: ("sm" + url.lastPathComponent) as NSString)
                 completion(.success(image))
             case .failure(let error):
                 completion(.failure(error))

@@ -33,17 +33,22 @@ var heros: [Hero] = []
 
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
+    // MARK: UICollectionViewDelegate
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    override func collectionView(_ colletionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showImage", sender: indexPath.item )
     }
-    */
+
+
+
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let index = sender as? Int else { return }
+        let showVC = segue.destination as! ImageHeroViewController
+            showVC.hero = heros[index]
+    }
+    
 
     // MARK: UICollectionViewDataSource
 
@@ -54,7 +59,7 @@ var heros: [Hero] = []
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "herosCell", for: indexPath) as!  SuperHerosCollectionViewCell
     
-        let hero = heros[indexPath.row]
+        let hero = heros[indexPath.item]
         cell.configure(hero)
     
         return cell
