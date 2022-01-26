@@ -23,12 +23,12 @@ class NetworkingManager {
     static var shared = NetworkingManager()
     private init() {}
     
-    func fetchImage(url: String, complition: @escaping(Result<Data, ErrorNetwork>) -> Void) {
+    func fetchImage(url: URL, complition: @escaping(Result<Data, ErrorNetwork>) -> Void) {
         
-        guard let url = URL(string: url) else {
-            complition(.failure(.errorURL))
-            return
-        }
+//        guard let url = URL(string: url) else {
+//            complition(.failure(.errorURL))
+//            return
+  //      }
         DispatchQueue.global().async {
             guard let imageData = try? Data(contentsOf: url) else {
                 complition(.failure(.errorData))
