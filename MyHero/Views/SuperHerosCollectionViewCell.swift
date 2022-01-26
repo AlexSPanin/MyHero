@@ -37,20 +37,39 @@ class SuperHerosCollectionViewCell: UICollectionViewCell {
         imageURL = URL(string: hero.images.sm ?? "")
         }
     
-    
-private func updateImage() {
-    guard let url = imageURL else { return }
-    NetworkingManager.shared.fetchImage(url: url ) { result in
-        switch result {
-        case .success(let data):
-            if url == self.imageURL {
-            self.activityIndicator?.stopAnimating()
-            self.heroImageView.image = UIImage(data: data)
+   // MARK: -  остановка аниматора загрузка и вывод картинки
+    private func updateImage() {
+        guard let url = imageURL else { return }
+
+        getImage(from: url){ result in
+            switch result {
+            case .success(let image):
+                if url == self.imageURL {
+                    self.heroImageView.image = image
+                    self.activityIndicator?.stopAnimating()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        case .failure(let error):
-            print(error.localizedDescription)
         }
     }
+
+    // MARK: - получение картинки из кэша
+    private func getImage(from url: URL, completion: @escaping(Result<UIImage, Error>) -> Void) {
+        if let cacheImage = ImageCache.shared.object(forKey: url.lastPathComponent as NSString) {
+            completion(.success(cacheImage))
+            return
+    }
+        NetworkingManager.shared.fetchImage(url: url) { result in
+            switch result {
+            case .success(let data):
+                guard let image = UIImage(data: data) else { return }
+                ImageCache.shared.setObject(image, forKey: url.lastPathComponent as NSString)
+                completion(.success(image))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
 }
     
     // MARK: -  индикатор загрузки ввиде ромашки

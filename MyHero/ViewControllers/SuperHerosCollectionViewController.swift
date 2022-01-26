@@ -12,7 +12,7 @@ class SuperHerosCollectionViewController: UICollectionViewController {
 var heros: [Hero] = []
 
     private let aspectRatioPerItem: CGFloat = 4 / 3
-    private let itemsPerRows: CGFloat = 3
+    private let itemsPerRows: CGFloat = 2
     private let sectionInsert = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
     
