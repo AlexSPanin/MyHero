@@ -3,6 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -90,10 +91,40 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Super Heros" id="eBj-Jq-933"/>
+                    <connections>
+                        <segue destination="LPt-eZ-jpF" kind="show" identifier="showImage" id="SzD-sU-nM1"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKb-zm-bDE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1055.2" y="-6.746626686656672"/>
+            <point key="canvasLocation" x="-1321" y="-8"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="KRw-ZH-4Rw">
+            <objects>
+                <viewController id="LPt-eZ-jpF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="enw-eQ-sua">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2mu-xg-VzY">
+                                <rect key="frame" x="5" y="49" width="365" height="613"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Pif-SL-x4I"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2mu-xg-VzY" firstAttribute="leading" secondItem="Pif-SL-x4I" secondAttribute="leading" constant="5" id="4Pu-CY-1m1"/>
+                            <constraint firstItem="Pif-SL-x4I" firstAttribute="bottom" secondItem="2mu-xg-VzY" secondAttribute="bottom" constant="5" id="IGr-VD-ndt"/>
+                            <constraint firstItem="2mu-xg-VzY" firstAttribute="top" secondItem="Pif-SL-x4I" secondAttribute="top" constant="5" id="URo-dE-dRc"/>
+                            <constraint firstItem="Pif-SL-x4I" firstAttribute="trailing" secondItem="2mu-xg-VzY" secondAttribute="trailing" constant="5" id="w3r-cv-Htb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="zG2-37-Q8C"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Rf-dG-M1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-598" y="-9"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oBg-Me-IyS">
@@ -111,7 +142,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEp-Fj-Xgj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1767.2" y="-5.8470764617691158"/>
+            <point key="canvasLocation" x="-2050" y="-7"/>
         </scene>
     </scenes>
     <resources>
