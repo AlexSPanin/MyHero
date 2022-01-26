@@ -27,6 +27,10 @@ var heros: [Hero] = []
         layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .horizontal
         */
+        let navBarAppearence = UINavigationBarAppearance()
+        navBarAppearence.titleTextAttributes = [.font: UIFont(name: "Marker Felt Thin", size: 20) ?? ""]
+        navigationController?.navigationBar.standardAppearance = navBarAppearence
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearence
         
         collectionView.showsVerticalScrollIndicator = false  // скрыть вертикальную полоску прокрутки
         fetchHeros(Links.superHerosApi.rawValue)

@@ -107,12 +107,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2mu-xg-VzY">
-                                <rect key="frame" x="5" y="10" width="365" height="486.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="2mu-xg-VzY" secondAttribute="height" multiplier="3:4" id="32R-X3-wG0"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="6ab-lR-F8Q">
+                                <rect key="frame" x="2" y="10" width="371" height="511.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lN2-WN-HjH">
+                                        <rect key="frame" x="164" y="0.0" width="43.5" height="22"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2mu-xg-VzY">
+                                        <rect key="frame" x="3" y="25" width="365" height="486.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="2mu-xg-VzY" secondAttribute="height" multiplier="3:4" id="32R-X3-wG0"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wk7-1q-ldX">
                                 <rect key="frame" x="144.5" y="586" width="86" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -123,16 +139,17 @@
                         <viewLayoutGuide key="safeArea" id="Pif-SL-x4I"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2mu-xg-VzY" firstAttribute="leading" secondItem="Pif-SL-x4I" secondAttribute="leading" constant="5" id="4Pu-CY-1m1"/>
+                            <constraint firstItem="6ab-lR-F8Q" firstAttribute="top" secondItem="Pif-SL-x4I" secondAttribute="top" constant="10" id="0xC-o0-EoY"/>
                             <constraint firstItem="Pif-SL-x4I" firstAttribute="bottom" secondItem="Wk7-1q-ldX" secondAttribute="bottom" constant="30" id="8AN-35-z36"/>
-                            <constraint firstItem="2mu-xg-VzY" firstAttribute="top" secondItem="Pif-SL-x4I" secondAttribute="top" constant="10" id="URo-dE-dRc"/>
+                            <constraint firstItem="Pif-SL-x4I" firstAttribute="trailing" secondItem="6ab-lR-F8Q" secondAttribute="trailing" constant="2" id="HwK-US-Ron"/>
+                            <constraint firstItem="6ab-lR-F8Q" firstAttribute="leading" secondItem="enw-eQ-sua" secondAttribute="leading" constant="2" id="Oo3-Pd-4Pj"/>
                             <constraint firstItem="Wk7-1q-ldX" firstAttribute="centerX" secondItem="enw-eQ-sua" secondAttribute="centerX" id="W29-gw-fEl"/>
-                            <constraint firstItem="Pif-SL-x4I" firstAttribute="trailing" secondItem="2mu-xg-VzY" secondAttribute="trailing" constant="5" id="w3r-cv-Htb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zG2-37-Q8C"/>
                     <connections>
                         <outlet property="heroImageView" destination="2mu-xg-VzY" id="Y9W-Fr-BXG"/>
+                        <outlet property="heroNameLabel" destination="lN2-WN-HjH" id="eCA-gv-Gbp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Rf-dG-M1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

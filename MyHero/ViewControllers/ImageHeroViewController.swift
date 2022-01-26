@@ -10,6 +10,7 @@ import UIKit
 class ImageHeroViewController: UIViewController {
     
     @IBOutlet var heroImageView: UIImageView!
+    @IBOutlet var heroNameLabel: UILabel!
     
     var hero: Hero?
     
@@ -17,6 +18,7 @@ class ImageHeroViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        heroNameLabel.text = hero?.name
         imageURL = URL(string: hero?.images.lg ?? "")
         updateImage()
     }
