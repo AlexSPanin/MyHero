@@ -12,7 +12,7 @@ class SuperHerosCollectionViewController: UICollectionViewController {
 var heros: [Hero] = []
 
     private let aspectRatioPerItem: CGFloat = 4 / 3
-    private let itemsPerRows: CGFloat = 2
+    private let itemsPerRows: CGFloat = 3
     private let sectionInsert = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
     
@@ -20,7 +20,6 @@ var heros: [Hero] = []
         super.viewDidLoad()
         /*
         // MARK: - второй способ задания установок ячеек через as!
-        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: 128, height: 256)
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -69,7 +68,6 @@ extension SuperHerosCollectionViewController {
             switch result {
             case .success(let data):
                 self.heros = data
-  //              print(self.heros)
                 self.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
