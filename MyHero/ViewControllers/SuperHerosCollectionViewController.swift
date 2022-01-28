@@ -27,6 +27,8 @@ var heros: [Hero] = []
         layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .horizontal
         */
+        
+        // MARK: - настройка шрифта в навигайшен баре
         let navBarAppearence = UINavigationBarAppearance()
         navBarAppearence.titleTextAttributes = [.font: UIFont(name: "Marker Felt Thin", size: 20) ?? ""]
         navigationController?.navigationBar.standardAppearance = navBarAppearence
@@ -37,15 +39,19 @@ var heros: [Hero] = []
 
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView.reloadData()
+    }
+    
     // MARK: UICollectionViewDelegate
 
+    // MARK: - Navigation
+    
     override func collectionView(_ colletionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showImage", sender: indexPath.item )
     }
 
-
-
-    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let index = sender as? Int else { return }
@@ -55,7 +61,6 @@ var heros: [Hero] = []
     
 
     // MARK: UICollectionViewDataSource
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return heros.count
     }
@@ -70,7 +75,6 @@ var heros: [Hero] = []
     }
 }
 // MARK: - Fetch Data
-
 extension SuperHerosCollectionViewController {
     func fetchHeros(_ url: String) {
         NetworkingManager.shared.fetchData(url: url) { result in
@@ -84,7 +88,6 @@ extension SuperHerosCollectionViewController {
         }
     }
 }
-
 
 extension SuperHerosCollectionViewController: UICollectionViewDelegateFlowLayout {
     

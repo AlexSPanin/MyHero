@@ -134,6 +134,9 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" title=" Share"/>
+                                <connections>
+                                    <action selector="actionShareButton:" destination="LPt-eZ-jpF" eventType="touchUpInside" id="7MV-SQ-9zm"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Pif-SL-x4I"/>

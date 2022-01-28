@@ -23,6 +23,15 @@ class ImageHeroViewController: UIViewController {
         updateImage()
     }
     
+    @IBAction func actionShareButton(_ sender: Any) {
+        let image = heroImageView.image!
+        let shareController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        shareController.completionWithItemsHandler = { _, bool, _, _ in
+            if bool { print("Yes")}
+        }
+        present(shareController, animated: true, completion: nil)
+        
+    }
     // MARK: -  остановка аниматора загрузка и вывод картинки
     private func updateImage() {
         guard let url = imageURL else { return }
