@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Heros {
+struct Heros: Codable {
     var like: Bool = false
     let hero: Hero
 }
