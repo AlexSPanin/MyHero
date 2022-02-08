@@ -18,6 +18,7 @@ class SuperHerosCollectionViewCell: UICollectionViewCell {
     
     var id: Int?
     var like: Bool = false
+    var heros: Heros?
     
     var delegate: SuperHerosCollectionViewCellDelegate!
     
@@ -40,14 +41,16 @@ class SuperHerosCollectionViewCell: UICollectionViewCell {
     
     // MARK: - функция для отработки выбора понравившейся картинки
     @objc func editLike() {
-        delegate.button(for: self)
         like.toggle()
+        heros?.like = like
         let image = like ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         likesButton.setImage(image, for: .normal)
+        delegate.button(for: self)
     }
     
     // MARK: -  функция конфигурирования ячейки в CollectionView
     func configure(_ hero: Heros) {
+        heros = hero
         like = hero.like
         id = hero.hero.id
         heroNameLabel.text = hero.hero.name

@@ -15,6 +15,9 @@ class SuperHerosCollectionViewController: UICollectionViewController {
     
     var heros: [Heros] = []
     var likeHeros: [Heros] = []
+    let navBarAppearence = UINavigationBarAppearance()
+    
+    
     
     private let aspectRatioPerItem: CGFloat = 4 / 3
     private let itemsPerRows: CGFloat = 2
@@ -24,31 +27,10 @@ class SuperHerosCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let navBarAppearence = UINavigationBarAppearance()
+        setupUI()
         
-        navBarAppearence.titleTextAttributes = [.font: UIFont(name: "Marker Felt Thin", size: 20) ?? ""]
-        navigationController?.navigationBar.standardAppearance = navBarAppearence
-        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearence
-        
-        // MARK: - фильтр любимых на панеле
-        let filterButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(
-                image: UIImage(systemName: "heart"),
-                style: .plain,
-                target: self,
-                action: #selector(filterButtonPress)
-            )
-            button.tintColor = .black
-            return button
-        }()
-        
-        navigationItem.leftBarButtonItem = filterButton
-        
-        
-        collectionView.showsVerticalScrollIndicator = false  // скрыть вертикальную полоску прокрутки
-        
+        likeHeros = StorageManager.shared.fetchHeros()
         fetchData(Links.superHerosApi.rawValue)
-        likeHeros = heros.filter( \.like )
     }
     
     // Вызывается при изменении размеров вью
@@ -88,18 +70,45 @@ class SuperHerosCollectionViewController: UICollectionViewController {
         guard let button = navigationItem.leftBarButtonItem else { return }
         likeBool.toggle()
         button.image = likeBool ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        likeHeros = StorageManager.shared.fetchHeros()
         collectionView.reloadData()
+    }
+    
+    private func setupUI() {
+        navBarAppearence.titleTextAttributes = [.font: UIFont(name: "Marker Felt Thin", size: 20) ?? ""]
+        navigationController?.navigationBar.standardAppearance = navBarAppearence
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearence
+        
+        let filterButton: UIBarButtonItem = {
+            let button = UIBarButtonItem(
+                image: UIImage(systemName: "heart"),
+                style: .plain,
+                target: self,
+                action: #selector(filterButtonPress)
+            )
+            button.tintColor = .black
+            return button
+        }()
+        navigationItem.leftBarButtonItem = filterButton // добавил кнопку "любимых"
+        collectionView.showsVerticalScrollIndicator = false  // скрыть вертикальную полоску прокрутки
     }
 }
 // MARK: - функция получения и формирования массива информации Fetch Data
 extension SuperHerosCollectionViewController {
     
     func fetchData(_ url: String) {
+        
         NetworkingManager.shared.fetchData(url: url) { result in
             switch result {
             case .success(let data):
+                // формируем новый массив с элементом "любимы"
                 for hero in data {
-                    self.heros.append(Heros(like: false, hero: hero))
+                    // проверка ели герой присутствует в массиве "любимых", то признак true
+                    if self.likeHeros.contains(where: { heros in heros.hero.id == hero.id }) {
+                        self.heros.append(Heros(like: true, hero: hero))
+                    } else {
+                        self.heros.append(Heros(like: false, hero: hero))
+                    }
                 }
                 self.collectionView.reloadData()
             case .failure(let error):
@@ -140,12 +149,23 @@ extension SuperHerosCollectionViewController: UICollectionViewDelegateFlowLayout
 
     // MARK: - функция делегата для отработки нажатия кнопки "понравилась"
 extension SuperHerosCollectionViewController: SuperHerosCollectionViewCellDelegate {
+    
     func button(for cell: SuperHerosCollectionViewCell) {
-        
-        if let index = heros.firstIndex(where: { key in key.hero.id ?? 0 == cell.id }) {
-                heros[index].like.toggle()
-            likeHeros = heros.filter( \.like )
-            }
+        // забираем из ячейки данные персонажа
+        guard let hero = cell.heros else { return }
+        // -  сохраняем или удаляем из UserDefalts "любимых"
+        if let index = likeHeros.firstIndex(where: { likeHehos in likeHehos.hero.id == cell.id}) {
+            StorageManager.shared.delete(index: index)
+        } else {
+            StorageManager.shared.save(hero: hero)
+        }
+        // - перезагружаем массив "любимых"
+        likeHeros = StorageManager.shared.fetchHeros()
+        // - определяем индекс основного массива и меняем значение "любимый" на противоположное
+        if let index = heros.firstIndex(where: { heros in heros.hero.id == cell.id }) {
+            heros[index].like.toggle()
         }
     }
+}
+    
 
