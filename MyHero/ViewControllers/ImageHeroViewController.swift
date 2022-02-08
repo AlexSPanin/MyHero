@@ -12,18 +12,19 @@ class ImageHeroViewController: UIViewController {
     @IBOutlet var heroImageView: UIImageView!
     @IBOutlet var heroNameLabel: UILabel!
     
-    var hero: Hero?
+    var hero: Heros?
     
     private var imageURL: URL?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        heroNameLabel.text = hero?.name
-        imageURL = URL(string: hero?.images.lg ?? "")
+        heroNameLabel.text = hero?.hero.name
+        imageURL = URL(string: hero?.hero.images.lg ?? "")
         updateImage()
     }
     
-    @IBAction func actionShareButton(_ sender: Any) {
+    func actionShareButton(_ sender: Any) {
         let image = heroImageView.image!
         let shareController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         shareController.completionWithItemsHandler = { _, bool, _, _ in

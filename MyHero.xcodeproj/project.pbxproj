@@ -68,9 +68,9 @@
 		E2967DDE279DA166003BBFA0 /* MyHero */ = {
 			isa = PBXGroup;
 			children = (
+				E2A6523A279ECCA600DDB207 /* Views */,
 				E2A65235279ECC5200DDB207 /* ViewControllers */,
 				E2A65238279ECC7800DDB207 /* Models */,
-				E2A6523A279ECCA600DDB207 /* Views */,
 				E2A6523B279ECCD500DDB207 /* SupportingFiles */,
 				E2A65239279ECC8600DDB207 /* Resourses */,
 				E2A65237279ECC6F00DDB207 /* Servises */,

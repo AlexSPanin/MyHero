@@ -16,8 +16,21 @@ class SuperHerosCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    // MARK: - Cach Image
+    var id: Int?
+    var like: Bool = false
     
+    var delegate: SuperHerosCollectionViewCellDelegate!
+    
+    
+    // - кнопка понравившеяся картинка
+    let likesButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .white
+        return button
+    }()
+    
+    // MARK: - переменная для проверки нахождения адреса картинки в кеш Cach Image
     private var imageURL: URL? {
         didSet {
             heroImageView.image = nil
@@ -25,41 +38,60 @@ class SuperHerosCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private var activityIndicator: UIActivityIndicatorView?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        activityIndicator = showSpinner(in: heroImageView)
+    // MARK: - функция для отработки выбора понравившейся картинки
+    @objc func editLike() {
+        delegate.button(for: self)
+        like.toggle()
+        let image = like ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        likesButton.setImage(image, for: .normal)
     }
     
-    func configure(_ hero: Hero) {
-        heroNameLabel.text = hero.name
-        imageURL = URL(string: hero.images.sm ?? "")
-        }
+    // MARK: -  функция конфигурирования ячейки в CollectionView
+    func configure(_ hero: Heros) {
+        like = hero.like
+        id = hero.hero.id
+        heroNameLabel.text = hero.hero.name
+        imageURL = URL(string: hero.hero.images.sm ?? "")
+        
+        setupLikesButton()
+    }
     
-   // MARK: -  остановка аниматора загрузка и вывод картинки
+    // MARK: - настройка параметров кнопки "понравилось"
+    private func setupLikesButton() {
+        addSubview(likesButton)
+        let image = like ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        likesButton.setImage(image, for: .normal)
+        
+        likesButton.topAnchor.constraint(equalTo: heroImageView.topAnchor, constant: 0).isActive = true
+        likesButton.rightAnchor.constraint(equalTo: heroImageView.rightAnchor, constant: 0).isActive = true
+        likesButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        likesButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        
+        likesButton.addTarget(self, action: #selector(editLike), for: .touchDown)
+    }
+    
+    // MARK: -  обновление картинки картинки
     private func updateImage() {
         guard let url = imageURL else { return }
-
+        
         getImage(from: url){ result in
             switch result {
             case .success(let image):
                 if url == self.imageURL {
                     self.heroImageView.image = image
-                    self.activityIndicator?.stopAnimating()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-
-    // MARK: - получение картинки из кэша
+    
+    // MARK: - получение картинки из кэша либо загрузка из интернета
     private func getImage(from url: URL, completion: @escaping(Result<UIImage, Error>) -> Void) {
         if let cacheImage = ImageCache.shared.object(forKey: ("sm" + url.lastPathComponent) as NSString) {
             completion(.success(cacheImage))
             return
-    }
+        }
         NetworkingManager.shared.fetchImage(url: url) { result in
             switch result {
             case .success(let data):
@@ -70,17 +102,5 @@ class SuperHerosCollectionViewCell: UICollectionViewCell {
                 completion(.failure(error))
             }
         }
-}
-    
-    // MARK: -  индикатор загрузки ввиде ромашки
-    private func showSpinner( in view: UIView) -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(style: .medium)
-        activityIndicator.color = .white
-        activityIndicator.startAnimating()
-        activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped = true
-        
-        view.addSubview(activityIndicator)
-        return activityIndicator
     }
 }

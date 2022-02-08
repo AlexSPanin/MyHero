@@ -7,7 +7,12 @@
 
 import Foundation
 
-// MARK - Hero
+struct Heros {
+    var like: Bool = false
+    let hero: Hero
+}
+
+// MARK: - Hero
 struct Hero: Codable {
     let id: Int?
     let name: String?
@@ -18,6 +23,17 @@ struct Hero: Codable {
     let work: Work
     let connections: Connections
     let images: Images
+    var powerstatesLabel: String { """
+        Experience Characteristics:
+        
+        intelligence - \(powerstats.intelligence ?? 0)
+        strength     - \(powerstats.strength ?? 0)
+        speed        - \(powerstats.speed ?? 0)
+        durability   - \(powerstats.durability ?? 0)
+        power        - \(powerstats.power ?? 0)
+        combat       - \(powerstats.combat ?? 0)
+        """
+    }
 }
 
 // MARK: - Powerstats
