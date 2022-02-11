@@ -12,7 +12,7 @@
         <!--Super Heros-->
         <scene sceneID="JpW-qn-AZg">
             <objects>
-                <collectionViewController id="apd-3H-lIh" customClass="SuperHerosCollectionViewController" customModule="MyHero" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="apd-3H-lIh" customClass="HeroesCollectionViewController" customModule="MyHero" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="OmR-4u-B9b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="herosCell" id="2d1-7f-rUy" customClass="SuperHerosCollectionViewCell" customModule="MyHero" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="heroesCell" id="2d1-7f-rUy" customClass="HeroesCollectionViewCell" customModule="MyHero" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="165" height="208"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="B3L-29-Eee">
@@ -39,7 +39,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heros Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXB-gf-5kJ">
                                                     <rect key="frame" x="0.0" y="173" width="165" height="35"/>
-                                                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -67,72 +67,12 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Super Heros" id="eBj-Jq-933"/>
                     <connections>
-                        <segue destination="LPt-eZ-jpF" kind="presentation" identifier="showImage" id="6qW-Xq-gGR"/>
+                        <segue destination="Zyv-va-B83" kind="presentation" identifier="showImage" id="xOo-Rh-Op3"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKb-zm-bDE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1321" y="-8"/>
-        </scene>
-        <!--Image Hero View Controller-->
-        <scene sceneID="KRw-ZH-4Rw">
-            <objects>
-                <viewController id="LPt-eZ-jpF" customClass="ImageHeroViewController" customModule="MyHero" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="enw-eQ-sua">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="6ab-lR-F8Q">
-                                <rect key="frame" x="2" y="10" width="371" height="511.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lN2-WN-HjH">
-                                        <rect key="frame" x="164" y="0.0" width="43.5" height="22"/>
-                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2mu-xg-VzY">
-                                        <rect key="frame" x="3" y="25" width="365" height="486.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="2mu-xg-VzY" secondAttribute="height" multiplier="3:4" id="32R-X3-wG0"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wk7-1q-ldX">
-                                <rect key="frame" x="144.5" y="586" width="86" height="31"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" title=" Share"/>
-                                <connections>
-                                    <action selector="actionShareButton:" destination="LPt-eZ-jpF" eventType="touchUpInside" id="7MV-SQ-9zm"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Pif-SL-x4I"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="6ab-lR-F8Q" firstAttribute="top" secondItem="Pif-SL-x4I" secondAttribute="top" constant="10" id="0xC-o0-EoY"/>
-                            <constraint firstItem="Pif-SL-x4I" firstAttribute="bottom" secondItem="Wk7-1q-ldX" secondAttribute="bottom" constant="30" id="8AN-35-z36"/>
-                            <constraint firstItem="Pif-SL-x4I" firstAttribute="trailing" secondItem="6ab-lR-F8Q" secondAttribute="trailing" constant="2" id="HwK-US-Ron"/>
-                            <constraint firstItem="6ab-lR-F8Q" firstAttribute="leading" secondItem="enw-eQ-sua" secondAttribute="leading" constant="2" id="Oo3-Pd-4Pj"/>
-                            <constraint firstItem="Wk7-1q-ldX" firstAttribute="centerX" secondItem="enw-eQ-sua" secondAttribute="centerX" id="W29-gw-fEl"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="zG2-37-Q8C"/>
-                    <connections>
-                        <outlet property="heroImageView" destination="2mu-xg-VzY" id="Y9W-Fr-BXG"/>
-                        <outlet property="heroNameLabel" destination="lN2-WN-HjH" id="eCA-gv-Gbp"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Rf-dG-M1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-599.20000000000005" y="-9.4452773613193415"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oBg-Me-IyS">
@@ -152,9 +92,24 @@
             </objects>
             <point key="canvasLocation" x="-2050" y="-7"/>
         </scene>
+        <!--Detailed View Controller-->
+        <scene sceneID="Ly0-qI-q5P">
+            <objects>
+                <viewController id="Zyv-va-B83" customClass="DetailedViewController" customModule="MyHero" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VOP-Yq-6TY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="OSn-tk-Bvp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xma-4c-XDS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ctG-5B-he3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-514" y="-9"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

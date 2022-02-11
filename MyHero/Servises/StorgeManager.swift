@@ -15,7 +15,7 @@ class StorageManager {
     
     private init() {}
     
-    func save(hero: Heros) {
+    func save(hero: Heroes) {
         var heros = fetchHeros()
         heros.append(hero)
         
@@ -31,9 +31,9 @@ class StorageManager {
         userDefaults.set(data, forKey: contactKey)
     }
 
-    func fetchHeros() -> [Heros] {
+    func fetchHeros() -> [Heroes] {
         guard let data = userDefaults.object(forKey: contactKey) as? Data else { return [] }
-        guard let heros = try? JSONDecoder().decode([Heros].self, from: data) else { return [] }
+        guard let heros = try? JSONDecoder().decode([Heroes].self, from: data) else { return [] }
         return heros
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Heros: Codable {
+struct Heroes: Codable {
     var like: Bool = false
     let hero: Hero
 }
@@ -23,15 +23,53 @@ struct Hero: Codable {
     let work: Work
     let connections: Connections
     let images: Images
+    
     var powerstatesLabel: String { """
-        Experience Characteristics:
         
-        intelligence - \(powerstats.intelligence ?? 0)
-        strength     - \(powerstats.strength ?? 0)
-        speed        - \(powerstats.speed ?? 0)
-        durability   - \(powerstats.durability ?? 0)
-        power        - \(powerstats.power ?? 0)
-        combat       - \(powerstats.combat ?? 0)
+        Experience:
+        
+        Intelligence  \(powerstats.intelligence ?? 0)
+        Strength     \(powerstats.strength ?? 0)
+        Speed         \(powerstats.speed ?? 0)
+        Durability    \(powerstats.durability ?? 0)
+        Power         \(powerstats.power ?? 0)
+        Combat       \(powerstats.combat ?? 0)
+        """
+    }
+    var appearanceLabel: String { """
+        
+        Appearance:
+        
+        Race         \(appearance.race ?? "")
+        Gender      \(appearance.gender ?? "")
+        Eye Color   \(appearance.eyeColor ?? "")
+        Hair Color   \(appearance.hairColor ?? "")
+        Height       \(appearance.height?[1] ?? "")
+        Weight       \(appearance.weight?[1] ?? "")
+        """
+    }
+    
+    var biographyLabel: String { """
+        
+        Biography:
+         
+        Full Name              \(biography.fullName ?? "")
+        Alter Egos             \(biography.alterEgos ?? "")
+        Place Of Birth        \(biography.placeOfBirth ?? "")
+        First Appearance   \(biography.firstAppearance ?? "")
+        Publisher               \(biography.publisher ?? "")
+        Alignment             \(biography.alignment ?? "")
+        """
+    }
+    
+    var workLabel: String { """
+        
+        Work and Connections:
+         
+        Occupation           \(work.occupation ?? "")
+        Base                     \(work.base ?? "")
+        Group Affiliation    \(connections.groupAffiliation ?? "")
+        Relative                \(connections.relative ?? "")
         """
     }
 }
