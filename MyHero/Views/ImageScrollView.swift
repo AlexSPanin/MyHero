@@ -34,7 +34,6 @@ class ImageScrollView: UIScrollView {
         positionImage()
     }
     
-    
     // функция отрпбатывающая нажание на экран см в переменной
     @objc func handleZoomingTap(sender: UITapGestureRecognizer) {
         // передаем где нажатие

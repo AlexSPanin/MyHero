@@ -13,19 +13,32 @@ protocol HeroesCollectionViewCellDelegate {
 
 class HeroesCollectionViewController: UICollectionViewController {
     
-    var heroes: [Heroes] = []
-    var likeHeroes: [Heroes] = []
-    let navBarAppearence = UINavigationBarAppearance()
+ 
+    private var heroes: [Heroes] = []
+    private var likeHeroes: [Heroes] = []
+    private var filteredHeroes: [Heroes] = []
+    private var checkHeroes: [Heroes] = []
+    private let navBarAppearence = UINavigationBarAppearance()
+    private let searchController = UISearchController(searchResultsController: nil)
     
     private let aspectRatioPerItem: CGFloat = 4 / 3
     private let itemsPerRows: CGFloat = 2
     private let sectionInsert = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    private var likeBool: Bool = false
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+    
+    private var isLiked: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
+        setupSearchController()
         likeHeroes = StorageManager.shared.fetchHeros()
         fetchData(Links.superHerosApi.rawValue)
     }
@@ -39,18 +52,21 @@ class HeroesCollectionViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let index = sender as? Int else { return }
         let showVC = segue.destination as! DetailedViewController
-        showVC.hero = likeBool ? likeHeroes[index].hero : heroes[index].hero
+        checkLiked()
+        showVC.hero = isFiltering ? filteredHeroes[index].hero : checkHeroes[index].hero
         
     }
     
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return likeBool ? likeHeroes.count : heroes.count
+        checkLiked()
+        return isFiltering ? filteredHeroes.count : checkHeroes.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "heroesCell", for: indexPath) as!  HeroesCollectionViewCell
-        let hero = likeBool ? likeHeroes[indexPath.item] : heroes[indexPath.item]
+        checkLiked()
+        let hero = isFiltering ? filteredHeroes[indexPath.item] : checkHeroes[indexPath.item]
         cell.configure(hero)
         cell.delegate = self
         return cell
@@ -59,12 +75,16 @@ class HeroesCollectionViewController: UICollectionViewController {
     // MARK: - функция отработки фильтра "любимых" картинок
     @objc func filterButtonPress() {
         guard let button = navigationItem.leftBarButtonItem else { return }
-        likeBool.toggle()
-        button.image = likeBool ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        isLiked.toggle()
+        button.image = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         likeHeroes = StorageManager.shared.fetchHeros()
         collectionView.reloadData()
     }
     
+    private func checkLiked() {
+        checkHeroes = isLiked ? likeHeroes : heroes
+    }
+        
     private func setupUI() {
         navBarAppearence.titleTextAttributes = [.font: UIFont(name: "Thonburi", size: 20) ?? ""]
         navigationController?.navigationBar.standardAppearance = navBarAppearence
@@ -82,6 +102,21 @@ class HeroesCollectionViewController: UICollectionViewController {
         }()
         navigationItem.leftBarButtonItem = filterButton // добавил кнопку "любимых"
         collectionView.showsVerticalScrollIndicator = false  // скрыть вертикальную полоску прокрутки
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.barTintColor = .white
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.font = UIFont.boldSystemFont(ofSize: 15)
+            textField.textColor = .black
+        }
     }
 }
 // MARK: - функция получения и формирования массива информации Fetch Data
@@ -159,4 +194,24 @@ extension HeroesCollectionViewController: HeroesCollectionViewCellDelegate {
     }
 }
 
+// MARK: - UISearchResultsUpdating
+extension HeroesCollectionViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        checkLiked()
+        filteredHeroes = checkHeroes.filter { heroes in
+            let race = heroes.hero.appearance.race?.lowercased() ?? ""
+            let  gender = heroes.hero.appearance.gender?.lowercased() ?? ""
+            let name = heroes.hero.name.lowercased()
+            let biography = heroes.hero.biographyLabel.lowercased()
+            let work = heroes.hero.workLabel.lowercased()
+            let text = searchText.lowercased()
+            return name.contains(text) || biography.contains(text) || work.contains(text) || race.contains(text) || gender.contains(text)
+        }
+        collectionView.reloadData()
+    }
+}
 

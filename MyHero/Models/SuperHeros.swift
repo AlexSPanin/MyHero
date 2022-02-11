@@ -15,7 +15,7 @@ struct Heroes: Codable {
 // MARK: - Hero
 struct Hero: Codable {
     let id: Int?
-    let name: String?
+    let name: String
     let slug: String?
     let powerstats: Powerstats
     let appearance: Appearance
