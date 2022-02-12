@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E25BEAB227B7D83100276B5B /* ExtensionDetailedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BEAB127B7D83100276B5B /* ExtensionDetailedVC.swift */; };
+		E25BEAB427B7DCAD00276B5B /* ExtensionHeroesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BEAB327B7DCAD00276B5B /* ExtensionHeroesCollection.swift */; };
 		E25C7C7127B2B4E000DFDECA /* DetailedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25C7C7027B2B4E000DFDECA /* DetailedScrollView.swift */; };
 		E25C7C7327B2B4FE00DFDECA /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25C7C7227B2B4FE00DFDECA /* DetailedViewController.swift */; };
 		E26B1F33279EEDAD0037FCBE /* HeroesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26B1F32279EEDAD0037FCBE /* HeroesCollectionViewCell.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		E25BEAB127B7D83100276B5B /* ExtensionDetailedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDetailedVC.swift; sourceTree = "<group>"; };
+		E25BEAB327B7DCAD00276B5B /* ExtensionHeroesCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHeroesCollection.swift; sourceTree = "<group>"; };
 		E25C7C7027B2B4E000DFDECA /* DetailedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedScrollView.swift; sourceTree = "<group>"; };
 		E25C7C7227B2B4FE00DFDECA /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		E26B1F32279EEDAD0037FCBE /* HeroesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				E25BEAB127B7D83100276B5B /* ExtensionDetailedVC.swift */,
+				E25BEAB327B7DCAD00276B5B /* ExtensionHeroesCollection.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				E2A65241279EEA0D00DDB207 /* HeroesCollectionViewController.swift in Sources */,
 				E2A6523F279ECF4800DDB207 /* SuperHeros.swift in Sources */,
 				E25BEAB227B7D83100276B5B /* ExtensionDetailedVC.swift in Sources */,
+				E25BEAB427B7DCAD00276B5B /* ExtensionHeroesCollection.swift in Sources */,
 				E289DAE727A15E3700D312E6 /* StorgeManager.swift in Sources */,
 				E2967DE0279DA166003BBFA0 /* AppDelegate.swift in Sources */,
 				E2E4381327B3E8D50069821C /* ImageScrollView.swift in Sources */,

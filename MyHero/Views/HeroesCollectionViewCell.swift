@@ -12,7 +12,7 @@ class HeroesCollectionViewCell: UICollectionViewCell {
     @IBOutlet var heroNameLabel: UILabel!
     @IBOutlet var heroImageView: UIImageView! {
         didSet {
-            heroImageView.layer.cornerRadius = 15
+            heroImageView.layer.cornerRadius = 20
         }
     }
     
