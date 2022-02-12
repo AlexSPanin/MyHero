@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Super Heros-->
+        <!--Super Heroes-->
         <scene sceneID="JpW-qn-AZg">
             <objects>
                 <collectionViewController id="apd-3H-lIh" customClass="HeroesCollectionViewController" customModule="MyHero" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hai-GV-7C3">
                                                     <rect key="frame" x="0.0" y="0.0" width="165" height="171"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heros Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXB-gf-5kJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heroes Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXB-gf-5kJ">
                                                     <rect key="frame" x="0.0" y="173" width="165" height="35"/>
                                                     <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="20"/>
                                                     <nil key="textColor"/>
@@ -65,7 +65,7 @@
                             <outlet property="delegate" destination="apd-3H-lIh" id="sa6-1O-jr5"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Super Heros" id="eBj-Jq-933"/>
+                    <navigationItem key="navigationItem" title="Super Heroes" id="eBj-Jq-933"/>
                     <connections>
                         <segue destination="Zyv-va-B83" kind="presentation" identifier="showImage" id="xOo-Rh-Op3"/>
                     </connections>

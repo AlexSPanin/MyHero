@@ -39,7 +39,8 @@ class HeroesCollectionViewController: UICollectionViewController {
         
         setupUI()
         setupSearchController()
-        likeHeroes = StorageManager.shared.fetchHeros()
+        likeHeroes = StorageManager.shared.fetchLikesHeroes()
+        likeHeroes = likeHeroes.sorted { $0.hero.id ?? 0 < $1.hero.id ?? 0 }
         fetchData(Links.superHerosApi.rawValue)
     }
     
@@ -50,9 +51,9 @@ class HeroesCollectionViewController: UICollectionViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        checkLiked()
         guard let index = sender as? Int else { return }
         let showVC = segue.destination as! DetailedViewController
-        checkLiked()
         showVC.hero = isFiltering ? filteredHeroes[index].hero : checkHeroes[index].hero
         
     }
@@ -77,7 +78,7 @@ class HeroesCollectionViewController: UICollectionViewController {
         guard let button = navigationItem.leftBarButtonItem else { return }
         isLiked.toggle()
         button.image = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-        likeHeroes = StorageManager.shared.fetchHeros()
+        likeHeroes = StorageManager.shared.fetchLikesHeroes()
         collectionView.reloadData()
     }
     
@@ -107,7 +108,7 @@ class HeroesCollectionViewController: UICollectionViewController {
     private func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.barTintColor = .white
         navigationItem.searchController = searchController
@@ -186,7 +187,7 @@ extension HeroesCollectionViewController: HeroesCollectionViewCellDelegate {
             StorageManager.shared.save(hero: hero)
         }
         // - перезагружаем массив "любимых"
-        likeHeroes = StorageManager.shared.fetchHeros()
+        likeHeroes = StorageManager.shared.fetchLikesHeroes()
         // - определяем индекс основного массива и меняем значение "любимый" на противоположное
         if let index = heroes.firstIndex(where: { heros in heros.hero.id == cell.id }) {
             heroes[index].like.toggle()
